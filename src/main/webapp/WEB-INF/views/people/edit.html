@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение данных пользователя</title>
+    <link rel="stylesheet" th:href="@{/css/styles_add.css}">
+    <link rel="stylesheet" th:href="@{/css/styles_menu.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="menu">
+    <ul class="menu-ul">
+        <li class="menu-li"><a class="menu-a" data-text='Главная' href="/">Главная</a></li>
+        <li  class="menu-li"><a class="menu-a" data-text="Пользователи" href="/people">Пользователи</a></li>
+        <li  class="menu-li"><a class="menu-a" data-text="Добавить" href="/people/add">Добавить</a></li>
+        <li  class="menu-li"><a class="menu-a" data-text="Книги" href="/book">Книги</a></li>
+    </ul>
+</header>
+<form class="text-field" th:method="PATCH" th:action="@{/people/{person_id}(person_id=${person.getPerson_id()})}" th:object="${person}">
+    <label class="text-field__label" for="name">Введите имя: </label>
+    <input class="text-field__input" type="text" th:field="*{name}" id="name"/>
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <br/>
+    <label class="text-field__label" for="date_of_birthday">Введите год рождения: </label>
+    <input class="text-field__input" type="text" th:field="*{date_of_birthday}" id="date_of_birthday"/>
+    <div style="color: red" th:if="${#fields.hasErrors('date_of_birthday')}" th:errors="*{date_of_birthday}">Year Error</div>
+    <br/>
+    <input class="btn btn-white btn-animated btn-text" type="submit" value="Обновить">
+</form>
+</body>
+</html>

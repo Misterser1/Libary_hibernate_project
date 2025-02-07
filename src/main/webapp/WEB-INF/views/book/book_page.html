@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книга</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <div class="text-center">
+            <img th:src="@{/images/book.png}" alt="Книга" width="150">
+            <h2 class="mt-3" th:text="${book.getBook_name()}">Название книги</h2>
+        </div>
+        <div class="mt-4">
+            <p><strong>Автор:</strong> <span th:text="${book.getAuthor()}"></span></p>
+            <p><strong>Год издания:</strong> <span th:text="${book.getYear()}"></span></p>
+            <p>
+                <strong th:text="${not #strings.isEmpty(book.getPerson_name()) ? 'Книга сейчас у: ' + book.getPerson_name() : 'Эта книга свободна. Кому назначить ее?'}"></strong>
+            </p>
+            <div th:if="${#strings.isEmpty(book.getPerson_name())}">
+                <form th:method="PATCH" th:action="@{/book/{book_id}(book_id=${book.getBook_id()})}" th:object="${book}">
+                <strong>
+                    <label>
+                        Выберите человека
+                        <select name="person_id">
+                            <option th:each="person :${people}" th:value="${person.person_id}" th:text="${person.name}">
+                            </option>
+                        </select>
+                        <input type="hidden" name="_method" value="PATCH">
+                        <input class="btn btn-primary" type="submit" value="Назначить книгу">
+                    </label>
+                </strong>
+                </form>
+            </div>
+            <div th:if="${not #strings.isEmpty(book.getPerson_name())}">
+                <form th:method="PATCH" th:action="@{/book/{book_id}/delete(book_id=${book.getBook_id()})}" th:object="${book}">
+                    <strong>
+                            <input type="hidden" name="_method" value="PATCH">
+                            <input class="btn btn-primary" type="submit" value="Освободить книгу">
+                    </strong>
+                </form>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <a th:href="@{/book/{book_id}/edit(book_id=${book.getBook_id()})}" class="btn btn-primary">Редактировать</a>
+            <form th:method="DELETE" th:action="@{/book/{book_id}(book_id=${book.getBook_id()})}">
+                <input type="submit" value="Удалить" class="btn btn-danger" onclick="return confirm('Вы уверены?');">
+            </form>
+        </div>
+        <div class="text-center mt-4">
+            <a th:href="@{/book}" class="btn btn-secondary">Назад</a>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

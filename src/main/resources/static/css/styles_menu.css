@@ -1,0 +1,55 @@
+/*menu*/
+@font-face {
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url(http://themes.googleusercontent.com/static/fonts/robotocondensed/v7/Zd2E9abXLFGSr9G3YK2MsFzqCfRpIA3W6ypxnPISCPA.woff) format('woff');
+}
+
+/* Ограничиваем стили только на меню */
+.menu {
+    font-family: 'Roboto Condensed';
+}
+
+.menu ul {
+    background-color: dodgerblue;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4) inset;
+    border-radius: 16px;
+    margin: 0;
+    padding: 0 30px;
+    text-align: center;
+    height: 50px;
+    overflow: hidden;
+    display: flex; /* Используем Flexbox для горизонтального расположения элементов */
+    justify-content: space-around; /* Элементы меню будут равномерно распределены по ширине */
+    align-items: center; /* Вертикальное выравнивание элементов по центру */
+}
+
+.menu ul li {
+    height: 100%;
+    list-style: none;
+    margin: 0 30px;
+}
+
+.menu ul li a {
+    letter-spacing: -1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #FFF;
+    display: inline-block;
+    font-size: 1.3em;
+    line-height: 50px;
+    margin-top: -50px;
+    transition: 0.3s cubic-bezier(0.1, 0.1, 0.5, 1.4);
+}
+
+.menu ul li a:hover {
+    margin-top: 0;
+}
+
+.menu ul li a:before {
+    content: attr(data-text);
+    display: block;
+    color: black;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список Людей</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/styles_menu.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="menu">
+<ul class="menu-ul">
+    <li class="menu-li"><a class="menu-a" data-text='Главная' href="/">Главная</a></li>
+    <li  class="menu-li"><a class="menu-a" data-text="Пользователи" href="/people">Пользователи</a></li>
+    <li  class="menu-li"><a class="menu-a" data-text="Добавить" href="/people/add">Добавить</a></li>
+    <li  class="menu-li"><a class="menu-a" data-text="Книги" href="/book">Книги</a></li>
+</ul>
+</header>
+<div class="card" th:each="person: ${people}">
+    <div class="container">
+        <!--    <a th:href="@{/people/{person_id}(person_id=${person.getPerson_id()})}"-->
+        <!--       th:text="${person.getName() + ', ' + person.getDate_of_birthday()}">user</a>-->
+        <img th:src="@{/images/avatar.png}" alt="Аватар" width="100px" class="left">
+        <p>
+            <a th:href="@{/people/{person_id}(person_id=${person.getPerson_id()})}"
+              th:text="${person.getName()}">user</a></p>
+        <p><a th:href="@{/people/{person_id}(person_id=${person.getPerson_id()})}"
+              th:text="${person.getDate_of_birthday()}">user</a></p>
+    </div>
+</div>
+<br/>
+<hr/>
+<a href="/people/add" class="btn btn-white btn-animated btn-text">Добавить</a>
+</body>
+</html>
