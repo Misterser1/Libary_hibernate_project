@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск книг</title>
+    <link rel="stylesheet" th:href="@{/css/styles_search.css}">
+    <link rel="stylesheet" th:href="@{/css/styles_menu.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="menu">
+    <ul class="menu-ul">
+        <li class="menu-li"><a class="menu-a" data-text='Главная' href="/">Главная</a></li>
+        <li  class="menu-li"><a class="menu-a" data-text="Пользователи" href="/people">Пользователи</a></li>
+        <li  class="menu-li"><a class="menu-a" data-text="Поиск" href="/people/add">Поиск</a></li>
+        <li  class="menu-li"><a class="menu-a" data-text="Книги" href="/book">Книги</a></li>
+    </ul>
+</header>
+<form class="text-field" th:method="POST" th:action="@{/book/search}" th:object="${book}">
+    <label class="text-field__label" for="bookSearch">Введите поисковой запрос: </label>
+    <input class="text-field__input" type="text" id="bookSearch" th:name="search"/>
+    <br/>
+    <input class="btn btn-white btn-animated btn-text" type="submit" value="Искать">
+</form>
+<div class="page-search-info" th:if="${books}">
+    <table>
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Год издания</th>
+            <th>Владелец</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.bookName}">Название книги</td>
+            <td th:text="${book.author}">Автор</td>
+            <td th:text="${book.year}">Год издания</td>
+            <td th:text="${book.owner != null ? book.owner.name : 'Свободна'}">Владелец</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="page-search-error" th:if="${error}">
+    <p th:text="${error}"></p>
+</div>
+</body>
+</html>

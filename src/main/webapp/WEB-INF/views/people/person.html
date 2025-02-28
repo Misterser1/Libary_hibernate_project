@@ -14,19 +14,19 @@
             <h2 class="mt-3" th:text="${people.getName()}">Имя пользователя</h2>
         </div>
         <div class="mt-4">
-            <p><strong>Дата рождения:</strong> <span th:text="${people.getDate_of_birthday()}"></span></p>
-            <p><strong>ID пользователя:</strong> <span th:text="${people.getPerson_id()}"></span></p>
+            <p><strong>Дата рождения:</strong> <span th:text="${people.getDateOfBirth()}"></span></p>
+            <p><strong>ID пользователя:</strong> <span th:text="${people.getId()}"></span></p>
             <p>
-                <strong th:text="${not #strings.isEmpty(people.getBook_name()) ? 'Книги: ' : 'Человек пока не взял ни одной книги'}"></strong>
+                <strong th:text="${#lists.isEmpty(books) ? 'Человек пока не взял ни одной книги' : 'Книги:'}"></strong>
             </p>
-            <div th:if="${not #strings.isEmpty(people.getBook_name())}" th:each="book : ${books}">
-                    <strong th:value="${book.person_id}" th:text="${book.book_name}">
-                    </strong>
+            <div th:if="${!#lists.isEmpty(books)}" th:each="book : ${books}">
+                <strong th:if="${!book.overdue}" th:text="${book.bookName}"></strong>
+                <strong style="color: red" th:if="${book.overdue}" th:text="${book.bookName}"></strong>
             </div>
         </div>
         <div class="d-flex justify-content-between mt-4">
-            <a th:href="@{/people/{person_id}/edit(person_id=${people.getPerson_id()})}" class="btn btn-primary">Редактировать</a>
-            <form th:method="DELETE" th:action="@{/people/{person_id}(person_id=${people.getPerson_id()})}">
+            <a th:href="@{/people/{id}/edit(id=${people.getId()})}" class="btn btn-primary">Редактировать</a>
+            <form th:method="DELETE" th:action="@{/people/{id}(id=${people.getId()})}">
                 <input type="submit" value="Удалить" class="btn btn-danger" onclick="return confirm('Вы уверены?');">
             </form>
         </div>

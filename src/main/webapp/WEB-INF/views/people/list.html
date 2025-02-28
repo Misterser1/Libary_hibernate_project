@@ -14,7 +14,7 @@
 <ul class="menu-ul">
     <li class="menu-li"><a class="menu-a" data-text='Главная' href="/">Главная</a></li>
     <li  class="menu-li"><a class="menu-a" data-text="Пользователи" href="/people">Пользователи</a></li>
-    <li  class="menu-li"><a class="menu-a" data-text="Добавить" href="/people/add">Добавить</a></li>
+    <li  class="menu-li"><a class="menu-a" data-text="Поиск" href="/book/search">Поиск</a></li>
     <li  class="menu-li"><a class="menu-a" data-text="Книги" href="/book">Книги</a></li>
 </ul>
 </header>
@@ -24,10 +24,10 @@
         <!--       th:text="${person.getName() + ', ' + person.getDate_of_birthday()}">user</a>-->
         <img th:src="@{/images/avatar.png}" alt="Аватар" width="100px" class="left">
         <p>
-            <a th:href="@{/people/{person_id}(person_id=${person.getPerson_id()})}"
+            <a th:href="@{/people/{id}(id=${person.getId()})}"
               th:text="${person.getName()}">user</a></p>
-        <p><a th:href="@{/people/{person_id}(person_id=${person.getPerson_id()})}"
-              th:text="${person.getDate_of_birthday()}">user</a></p>
+        <p><a th:href="@{/people/{id}(id=${person.getId()})}"
+              th:text="${person.getDateOfBirth()}">user</a></p>
     </div>
 </div>
 <br/>

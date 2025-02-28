@@ -17,7 +17,7 @@
     <ul class="menu-ul">
         <li class="menu-li"><a class="menu-a" data-text='Главная' href="/">Главная</a></li>
         <li  class="menu-li"><a class="menu-a" data-text="Пользователи" href="/people">Пользователи</a></li>
-        <li  class="menu-li"><a class="menu-a" data-text="Добавить" href="/people/add">Добавить</a></li>
+        <li  class="menu-li"><a class="menu-a" data-text="Поиск" href="/book/search">Поиск</a></li>
         <li  class="menu-li"><a class="menu-a" data-text="Книги" href="/book">Книги</a></li>
     </ul>
 </header>
